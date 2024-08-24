@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@babel/plugin-proposal-private-property-in-object": "",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
+    "query-string": "^9.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -37,7 +39,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.1.0",
     "@eslint/js": "^9.6.0",
-    "eslint": "^9.6.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.34.3",
     "globals": "^15.7.0"
   }
