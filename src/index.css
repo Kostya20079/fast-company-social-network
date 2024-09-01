@@ -7,6 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  max-width: 1382px;
+  margin: 0 auto;
+  padding: 70px 30px 0;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -18,4 +24,11 @@ code {
   align-items: center;
   height: 80vh;
   background-color: #f9f9f9;
+} 
+
+.container-fluid {
+  margin: 0 30px !important; 
+}
+.navbar-collapse {
+  justify-content: end;
 }

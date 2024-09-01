@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link, useParams } from "react-router-dom";
 import BookMark from "./bookmark";
 import QualitiesList from "./qualitiesList";
 import Table from "./table";
@@ -14,7 +15,11 @@ const UserTable = ({
   selectedSort,
 }) => {
   const columns = {
-    name: { path: "name", name: "Name" },
+    name: {
+      path: "name",
+      name: "Name",
+      component: (user) => <Link to={`/users/${user._id}`}>{user.name}</Link>,
+    },
     qualities: {
       name: "Qualities",
       component: (user) => <QualitiesList qualities={user.qualities} />,
@@ -40,11 +45,14 @@ const UserTable = ({
       ),
     },
   };
+
   return (
-    <Table>
-      <TableHeader {...{ onSort, selectedSort, columns }} />
-      <TableBody {...{ data: users, columns }} />
-    </Table>
+    <>
+      <Table>
+        <TableHeader {...{ onSort, selectedSort, columns }} />
+        <TableBody {...{ data: users, columns }} />
+      </Table>
+    </>
   );
 };
 

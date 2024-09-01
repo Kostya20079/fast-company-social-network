@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import PropTypes from "prop-types";
 import Pagination from "./pagination";
 import paginate from "../utils/paginate";
 import api from "../api";
@@ -8,7 +7,7 @@ import SearchStatus from "./searchStatus";
 import UserTable from "./usersTable";
 import _ from "lodash";
 
-const Users = () => {
+const UsersList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [professions, setProfession] = useState();
   const [selectedProf, setSelectedProf] = useState();
@@ -111,4 +110,4 @@ const Users = () => {
   return <div className="loading">Loading...</div>;
 };
 
-export default Users;
+export default UsersList;
