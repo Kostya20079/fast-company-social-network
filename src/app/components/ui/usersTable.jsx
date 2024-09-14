@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
-import BookMark from "./bookmark";
-import QualitiesList from "./qualitiesList";
-import Table from "./table";
-import TableHeader from "./tableHeader";
-import TableBody from "./tableBody";
+import { Link } from "react-router-dom";
+import BookMark from "../common/bookmark";
+import Qualities from "./qualities";
+import Table, {TableHeader, TableBody} from "../common/table";
 
 const UserTable = ({
   users,
@@ -22,7 +20,7 @@ const UserTable = ({
     },
     qualities: {
       name: "Qualities",
-      component: (user) => <QualitiesList qualities={user.qualities} />,
+      component: (user) => <Qualities qualities={user.qualities} />,
     },
     professions: { path: "profession.name", name: "Professions" },
     meetings: { path: "completedMeetings", name: "Meetings" },
