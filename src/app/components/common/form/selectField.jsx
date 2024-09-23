@@ -15,7 +15,7 @@ const SelectField = ({
     onChange({ name: target.name, value: target.value });
   };
   const getInputStatus = () => {
-    return `form-select ${error ? "is-invalid" : "is-valid"}`;
+    return `form-select ${error ? "is-invalid" : ""}`;
   };
   return (
     <div className="mb-3">

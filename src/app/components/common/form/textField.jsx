@@ -9,7 +9,7 @@ const TextField = ({ label, type = "text", name, value, onChange, error }) => {
   };
   const getInputStatus = () => {
     // validation checking styles
-    return `form-control ${error ? "is-invalid" : "is-valid"}`;
+    return `form-control ${error ? "is-invalid" : ""}`;
   };
   const toggleShowPassword = () => {
     // showing password

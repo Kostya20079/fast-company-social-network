@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../common/form/textField";
-import { validator } from "../../utils/validator";
 import CheckBoxField from "../common/form/checkBoxField";
+import * as yup from "yup";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "", stayOn: false });
@@ -9,31 +9,51 @@ const LoginForm = () => {
   const handleChange = (target) => {
     setData((prevState) => ({ ...prevState, [target.name]: target.value }));
   };
-  const validatorConfig = {
-    email: {
-      isRequired: { message: "Email must be provided" },
-      isEmail: { message: "Email entered incorrectly" },
-    },
-    password: {
-      isRequired: { message: "Password must be provided" },
-      isCapitalSymbol: {
-        message: "The password must contain at least 1 capital letter",
-      },
-      isContainDigit: {
-        message: "The password must contain at least 1 digit",
-      },
-      min: {
-        message: "The password must contain at least 8 characters",
-        value: 8,
-      },
-    },
-  };
+  let validateSchema = yup.object().shape({
+    password: yup
+      .string()
+      .required("Password must be provided")
+      .matches(
+        /(?=.*[A-Z])/,
+        "The password must contain at least 1 capital letter"
+      )
+      .matches(/(?=.*[0-9])/, "The password must contain at least 1 digit")
+      .matches(/(?=.{8,})/, "The password must contain at least 8 characters"),
+    email: yup
+      .string()
+      .required("Email must be provided")
+      .email("Email entered incorrectly"),
+  });
+  //   email: {
+  //     isRequired: { message: "Email must be provided" },
+  //     isEmail: { message: "Email entered incorrectly" },
+  //   },
+  //   password: {
+  //     isRequired: { message: "Password must be provided" },
+  //     isCapitalSymbol: {
+  //       message: "The password must contain at least 1 capital letter",
+  //     },
+  //     isContainDigit: {
+  //       message: "The password must contain at least 1 digit",
+  //     },
+  //     min: {
+  //       message: "The password must contain at least 8 characters",
+  //       value: 8,
+  //     },
+  //   },
+  // };
   useEffect(() => {
     validate();
   }, [data]);
   const validate = () => {
-    const errors = validator(data, validatorConfig);
-    setErrors(errors);
+    validateSchema
+      .validate(data) //(data, {abortEarly: false}) all errors in one time
+      .then(() => {
+        setErrors({});
+      })
+      .catch((error) => {
+        setErrors({ [error.path]: error.message });
+      });
     return Object.keys(errors).length === 0;
   };
   const isValid = Object.keys(errors).length === 0;
