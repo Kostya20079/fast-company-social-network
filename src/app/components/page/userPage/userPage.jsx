@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import API from "../../../api";
+import api from "../../../api";
 import Qualities from "../../ui/qualities";
 
 const UserPage = ({ userId }) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState();
   useEffect(() => {
-    API.users.getById(userId).then((data) => setUserData(data));
-  });
+    api.users.getById(userId).then((data) => setUserData(data));
+  }); 
 
   if (userData) {
     return (

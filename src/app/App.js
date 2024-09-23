@@ -11,7 +11,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/*" exact Component={Main} />
-        <Route path="login/*" Component={Login} />
+        <Route path="login/:type?" Component={Login} />
         <Route path="users/:userId?" Component={Users} />
         {/* <Route path="404/*" Component={PageNotFound} />
         <Route path="*" element={<Navigate replace to="404" />} /> */}

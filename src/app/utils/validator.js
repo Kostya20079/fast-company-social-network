@@ -1,11 +1,16 @@
 export function validator(data, config) {
+  // console.log(config);
   //! to validate a special regular expression - https://regex101.com
   const errors = {};
   function validate(validateMethod, data, config) {
     let statusValidate;
     switch (validateMethod) {
       case "isRequired": {
-        statusValidate = data.trim() === "";
+        if (data === "string") {
+          statusValidate = data.trim() === "";
+        } else {
+          statusValidate = !data;
+        }
         break;
       }
       case "isEmail": {
@@ -39,6 +44,7 @@ export function validator(data, config) {
         data[fieldName],
         config[fieldName][validateMethod]
       );
+
       if (error && !errors[fieldName]) {
         errors[fieldName] = error;
       }

@@ -3,14 +3,20 @@ import PropTypes from "prop-types";
 
 const TextField = ({ label, type = "text", name, value, onChange, error }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const handleChange = ({ target }) => {
+    // sending data to state
+    onChange({ name: target.name, value: target.value });
+  };
   const getInputStatus = () => {
+    // validation checking styles
     return `form-control ${error ? "is-invalid" : "is-valid"}`;
   };
   const toggleShowPassword = () => {
+    // showing password
     setShowPassword((prevState) => !prevState);
   };
   return (
-    <div className="mb-4 input-group">
+    <div className="mb-3 input-group">
       <label htmlFor={name}>{label}</label>
       <div className="input-group ">
         <input
@@ -18,7 +24,7 @@ const TextField = ({ label, type = "text", name, value, onChange, error }) => {
           id={name}
           name={name}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           className={`${getInputStatus()}`}
         />
         {type === "password" && (

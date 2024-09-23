@@ -4,7 +4,7 @@ import UserPage from "../page/userPage";
 import UsersListPage from "../page/usersListPage";
 
 const Users = () => {
-  let { userId } = useParams();
+  const { userId } = useParams();
 
   return <>{userId ? <UserPage userId={userId} /> : <UsersListPage />}</>;
 };
