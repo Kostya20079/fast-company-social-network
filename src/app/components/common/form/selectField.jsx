@@ -19,12 +19,12 @@ const SelectField = ({
   };
   return (
     <div className="mb-3">
-      <label htmlFor="professionForm" className="form-label">
+      <label htmlFor={name} className="form-label">
         {label}
       </label>
       <select
         className={getInputStatus()}
-        id="professionForm"
+        id={name}
         name={name}
         value={value}
         onChange={handleChange}

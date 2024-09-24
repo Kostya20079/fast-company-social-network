@@ -98,7 +98,7 @@ const UsersListPage = () => {
         )}
         <div className="d-flex flex-column">
           <SearchStatus length={count} />
-          <div class="input-group mb-3">
+          <div className="input-group mb-3">
             <input
               type="text"
               name="searchQuery"

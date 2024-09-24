@@ -1,32 +1,45 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import api from "../../../api";
 import Qualities from "../../ui/qualities";
 
 const UserPage = ({ userId }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [userData, setUserData] = useState();
   useEffect(() => {
     api.users.getById(userId).then((data) => setUserData(data));
-  }); 
+  }, []);
+  const handlePageChange = () => {
+    const currentPath = location.pathname;
+    navigate(`${currentPath}/edit`);
+  };
 
   if (userData) {
     return (
       <>
         <h1 style={{ color: "green" }}>{userData.name}</h1>
-        <h2 style={{ color: "blue" }}>
-          Profession: {userData.profession.name}
-        </h2>
+        <p>Profession: {userData.profession.name}</p>
+        <p>Gender: {userData.sex}</p>
         <Qualities qualities={userData.qualities} />
         <p>Meetings: {userData.completedMeetings}</p>
-        <p style={{ color: "red" }}>Rate: {userData.rate} / 5</p>
+        <p style={{ color: userData.rate > 3 ? "green" : "red" }}>
+          Rate: {userData.rate} / 5
+        </p>
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-success me-2"
           onClick={() => navigate(-1)}
         >
           Back
+        </button>
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={handlePageChange}
+        >
+          Edit
         </button>
       </>
     );

@@ -37,7 +37,7 @@ const users = [
     profession: professions.doctor,
     qualities: [qualities.tedious, qualities.uncertain, qualities.strange],
     completedMeetings: 36,
-    rate: 2.5,
+    rate: 2.2,
     bookmark: false,
   },
   {
@@ -165,7 +165,7 @@ const fetchAll = () =>
 const update = (id, data) =>
   new Promise((resolve) => {
     const users = JSON.parse(localStorage.getItem("users"));
-    const userIndex = users.findIndex((u) => u._id === id);
+    const userIndex = users.findIndex((user) => user._id === id);
     users[userIndex] = { ...users[userIndex], ...data };
     localStorage.setItem("users", JSON.stringify(users));
     resolve(users[userIndex]);
